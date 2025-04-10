@@ -59,7 +59,7 @@ func main() {
 	// recipes := router.Group("/recipes")
 	router.GET("recipes/", recipeHandler.GetAll)
 	router.GET("recipes/:id", recipeHandler.GetByID)
-	router.POST("recipes/", recipeHandler.Create)
+	router.POST("recipes", recipeHandler.Create)
 	router.PATCH("recipes/:id", recipeHandler.Update)
 	router.DELETE("recipes/:id", recipeHandler.Delete)
 
