@@ -56,9 +56,7 @@ func main() {
 	// ルーティング
 	router := gin.Default()
 
-	api := router.Group("/api")
-
-	recipes := api.Group("/recipes")
+	recipes := router.Group("/recipes")
 	recipes.GET("/", recipeHandler.GetAll)
 	recipes.GET("/:id", recipeHandler.GetByID)
 	recipes.POST("/", recipeHandler.Create)
