@@ -65,7 +65,7 @@ func main() {
 	recipes.PATCH("/:id", recipeHandler.Update)
 	recipes.DELETE("/:id", recipeHandler.Delete)
 
-	log.Fatal(http.ListenAndServe(":80", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 // initDBは別ファイルの方がいいのかな\(´ω` \)
