@@ -72,10 +72,10 @@ func (h *recipeHandler) GetByID(ctx *gin.Context) {
 
 func (h *recipeHandler) Create(ctx *gin.Context) {
 	var req struct {
-		Title       string `json:"title" binding:"required"`
-		MakingTime  string `json:"making_time" binding:"required"`
-		Serves      string `json:"serves" binding:"required"`
-		Ingredients string `json:"ingredients" binding:"required"`
+		Title       string `json:"title" binding:"required,min=1"`
+		MakingTime  string `json:"making_time" binding:"required,min=1"`
+		Serves      string `json:"serves" binding:"required,min=1"`
+		Ingredients string `json:"ingredients" binding:"required,min=1"`
 		Cost        int    `json:"cost" binding:"required"`
 	}
 
