@@ -2,8 +2,9 @@ package application
 
 import (
 	"context"
+
 	"github.com/zono0013/recipes_api.git/recipes/domain/models"
-	"github.com/zono0013/recipes_api.git/recipes/domain/repository"
+	"github.com/zono0013/recipes_api.git/recipes/domain/repositories"
 )
 
 type IRecipeUsecase interface {
@@ -14,12 +15,12 @@ type IRecipeUsecase interface {
 	DeleteRecipe(ctx context.Context, id uint) error
 }
 
-func NewRecipesUsecase(recipeRepo repository.RecipeRepository) IRecipeUsecase {
+func NewRecipesUsecase(recipeRepo repositories.RecipeRepository) IRecipeUsecase {
 	return &recipeUsecase{recipeRepo: recipeRepo}
 }
 
 type recipeUsecase struct {
-	recipeRepo repository.RecipeRepository
+	recipeRepo repositories.RecipeRepository
 }
 
 func (r *recipeUsecase) GetAllRecipes(ctx context.Context) ([]models.Recipe, error) {

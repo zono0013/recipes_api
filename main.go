@@ -25,26 +25,11 @@ func main() {
 	if err != nil {
 		fmt.Println("Error loading .env file")
 	}
-	env := os.Getenv("ENV")
-	if env == "staging" {
-		fmt.Println("environment: staging")
-	} else if env == "local" {
-		fmt.Println("environment: local")
-	} else if env == "production-migrating" {
-		fmt.Println("environment: production-migrating")
-	} else {
-		fmt.Println("Error loading .env file")
-	}
 
 	// データベース接続の初期化
 	db, err := initDB()
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	if env == "production-migrating" {
-		fmt.Println("OS Exit")
-		os.Exit(0)
 	}
 
 	recipeRepo := dao.NewRecipeRepository(db)
@@ -70,7 +55,6 @@ func main() {
 	router.Run(":" + port)
 }
 
-// initDBは別ファイルの方がいいのかな\(´ω` \)
 func initDB() (*gorm.DB, error) {
 	// .envファイルの読み込み
 	if err := godotenv.Load(); err != nil {
@@ -85,8 +69,6 @@ func initDB() (*gorm.DB, error) {
 	dbPort := os.Getenv("DB_PORT")
 
 	// 接続文字列の構築
-	//dsn := fmt.Sprintf(
-	//"host=%s user=%s password=%s dbname=%s port=%s sslmode=false",
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true&multiStatements=true",
 		dbUser, dbPassword, dbHost, dbPort, dbName,
 	)

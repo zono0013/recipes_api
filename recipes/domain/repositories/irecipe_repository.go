@@ -1,7 +1,8 @@
-package repository
+package repositories
 
 import (
 	"context"
+
 	"github.com/zono0013/recipes_api.git/recipes/domain/models"
 )
 
