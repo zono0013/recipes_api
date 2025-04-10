@@ -80,7 +80,7 @@ func (h *recipeHandler) Create(ctx *gin.Context) {
 	}
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
+		ctx.JSON(400, gin.H{
 			"message":  "Recipe creation failed!",
 			"required": "title, making_time, serves, ingredients, cost",
 		})
