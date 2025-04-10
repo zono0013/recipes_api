@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -80,6 +81,7 @@ func (h *recipeHandler) Create(ctx *gin.Context) {
 	}
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
+		log.Println("バインドエラー:", err)
 		ctx.JSON(400, gin.H{
 			"message":  "Recipe creation failed!",
 			"required": "title, making_time, serves, ingredients, cost",
