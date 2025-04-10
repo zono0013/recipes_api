@@ -3,6 +3,9 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-migrate/migrate/v4"
 	migrate_mysql "github.com/golang-migrate/migrate/v4/database/mysql"
@@ -15,9 +18,6 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"log"
-	"net/http"
-	"os"
 )
 
 func main() {
@@ -65,7 +65,11 @@ func main() {
 	recipes.PATCH("/:id", recipeHandler.Update)
 	recipes.DELETE("/:id", recipeHandler.Delete)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	router.Run(":" + port)
 }
 
 // initDBは別ファイルの方がいいのかな\(´ω` \)
