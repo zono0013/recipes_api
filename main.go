@@ -56,12 +56,12 @@ func main() {
 	// ルーティング
 	router := gin.Default()
 
-	recipes := router.Group("/recipes")
-	recipes.GET("/", recipeHandler.GetAll)
-	recipes.GET("/:id", recipeHandler.GetByID)
-	recipes.POST("/", recipeHandler.Create)
-	recipes.PATCH("/:id", recipeHandler.Update)
-	recipes.DELETE("/:id", recipeHandler.Delete)
+	// recipes := router.Group("/recipes")
+	router.GET("recipes/", recipeHandler.GetAll)
+	router.GET("recipes/:id", recipeHandler.GetByID)
+	router.POST("recipes/", recipeHandler.Create)
+	router.PATCH("recipes/:id", recipeHandler.Update)
+	router.DELETE("recipes/:id", recipeHandler.Delete)
 
 	port := os.Getenv("PORT")
 	if port == "" {
