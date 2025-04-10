@@ -57,7 +57,7 @@ func main() {
 	router := gin.Default()
 
 	// recipes := router.Group("/recipes")
-	router.GET("recipes/", recipeHandler.GetAll)
+	router.GET("recipes", recipeHandler.GetAll)
 	router.GET("recipes/:id", recipeHandler.GetByID)
 	router.POST("recipes", recipeHandler.Create)
 	router.PATCH("recipes/:id", recipeHandler.Update)
