@@ -76,20 +76,7 @@ func initDB() (*gorm.DB, error) {
 	}
 
 	// 環境変数から接続情報を取得
-	var dbName string
-	env := os.Getenv("ENV")
-	switch env {
-	case "staging":
-		dbName = os.Getenv("DB_NAME_STAGING")
-	case "production-migrating":
-		dbName = os.Getenv("DB_NAME_PRODUCTION")
-	default:
-		dbName = os.Getenv("DB_NAME")
-	}
-	if dbName == "" {
-		return nil, fmt.Errorf("DB_NAME is not set")
-	}
-
+	dbName := os.Getenv("DB_NAME")
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
@@ -133,9 +120,4 @@ func initDB() (*gorm.DB, error) {
 	fmt.Println("DB migrated")
 
 	return db, nil
-}
-
-func health(c *gin.Context) {
-	health := "ホゲホゲ"
-	c.JSON(200, health)
 }
