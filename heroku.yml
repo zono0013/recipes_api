@@ -1,0 +1,9 @@
+setup:
+  addons:
+    - plan: heroku-mysql:hobby-dev
+      as: DATABASE
+build:
+  docker:
+    web: docker/api/Dockerfile
+run:
+  web: /app/main
